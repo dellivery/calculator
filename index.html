@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Расчет стоимости товара</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://i.ibb.co/jZvLxN4T/photo-2025-09-27-00-37-47.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 380px;
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      border: 1px solid #8D297F;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button.calc-btn {
+      background: #EC238D;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    button.calc-btn:hover {
+      background: #BC3D96;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #7D256F;
+      text-align: center;
+    }
+    .note {
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: normal;
+      color: #333;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .instagram-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #E4405F;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .instagram-btn img {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+    .instagram-btn:hover {
+      background: #cc3750;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Расчет стоимости товара</h2>
+    <input id="price" type="number" placeholder="Введите цену в РУБ РФ"/>
+    <br/>
+    <button class="calc-btn" onclick="calculate()">Рассчитать</button>
+    <div class="result" id="result"></div>
+    <div class="note" id="note"></div>
+  </div>
+
+  <a href="https://www.instagram.com/dellivery.md" target="_blank" class="instagram-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"> @dellivery.md
+  </a>
+
+  <script>
+    // 👉 Здесь меняешь курс вручную, если нужно
+    const kurs = 0.192;
+
+    function calculate() {
+      let price = parseFloat(document.getElementById("price").value);
+      if (isNaN(price)) {
+        document.getElementById("result").innerHTML = "Введите цену!";
+        document.getElementById("note").innerHTML = "";
+        return;
+      }
+      let result = price * 1.25 * kurs * 1.015;
+      document.getElementById("result").innerHTML = "Итог: " + result.toFixed(2) + " РУБ ПМР / MDL";
+      document.getElementById("note").innerHTML = 
+        "• цена без учета доставки по весу<br>" + 
+        "• цена указана с процентом байера";
+    }
+  </script>
+</body>
+</html>
